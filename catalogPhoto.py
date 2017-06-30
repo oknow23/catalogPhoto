@@ -1,6 +1,7 @@
 import os
 import sys
 import pyexiv2
+import shutil
 
 VERSION = '0.1.0'
 LOCATION = ' [Taipei]'
@@ -57,12 +58,18 @@ for fileNames in os.listdir(os.getcwd()):
 		# Make folder
 		if not os.path.isdir(destPath):
 			os.makedirs(destPath)
+
 		
 		# Move file to folder
 		if not os.path.isfile(destPath+'\\'+fileNames):
 			os.rename(fileNames,destPath+'\\'+fileNames)
 		else:
 			print 'Warning !! file ' +destPath+'\\' +fileNames + ' is exist'
+
+# detect dealRaw
+if os.path.isfile("dealRaw.exe"):
+	print 'detect dealRaw'
+	shutil.copyfile("dealRaw.exe",dirName+'\\'+"dealRaw.exe")
 
 print 'Done!!'
 
