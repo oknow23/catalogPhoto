@@ -39,7 +39,8 @@ for fileNames in os.listdir(os.getcwd()):
 			# Get date and time for folder name
 			metadata = pyexiv2.ImageMetadata(fileNames)
 			metadata.read()
-			tag = metadata['Exif.Image.DateTime']
+			# tag = metadata['Exif.Image.DateTime']
+			tag = metadata['Exif.Photo.DateTimeOriginal']
 			# print tag.raw_value
 			dirName = tag.value.strftime('%Y-%m-%d')
 
@@ -48,6 +49,11 @@ for fileNames in os.listdir(os.getcwd()):
 			print dirName
 			if not os.path.isdir(dirName):
 				os.makedirs(dirName)
+
+				# detect dealRaw
+				if os.path.isfile("dealRaw.exe"):
+					print 'detect dealRaw'
+					shutil.copyfile("dealRaw.exe",dirName+'\\'+"dealRaw.exe")
 
 			# set destination path name
 			if i == JPG_TYPE:
@@ -66,10 +72,6 @@ for fileNames in os.listdir(os.getcwd()):
 		else:
 			print 'Warning !! file ' +destPath+'\\' +fileNames + ' is exist'
 
-# detect dealRaw
-if os.path.isfile("dealRaw.exe"):
-	print 'detect dealRaw'
-	shutil.copyfile("dealRaw.exe",dirName+'\\'+"dealRaw.exe")
 
 print 'Done!!'
 
