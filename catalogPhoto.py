@@ -68,7 +68,9 @@ for fileNames in os.listdir(os.getcwd()):
 		
 		# Move file to folder
 		if not os.path.isfile(destPath+'\\'+fileNames):
-			os.rename(fileNames,destPath+'\\'+fileNames)
+			newName = tag.value.strftime('%Y%m%d_%H%M')+subname
+			print newName
+			os.rename(fileNames,destPath+'\\'+newName)
 		else:
 			print 'Warning !! file ' +destPath+'\\' +fileNames + ' is exist'
 
